@@ -29,7 +29,7 @@ namespace A101 {
 				}
 			}
 
-			//We now know that there is a real, existing .A1 file passed into this program
+			//We now know that there is a real, existing .A1 file passed as the first argument
 
 
 			Console.Read();

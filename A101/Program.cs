@@ -14,6 +14,11 @@ namespace A101 {
 		static string inputCode = "";
 
 		/// <summary>
+		/// This holds modifiable code while it is being worked on
+		/// </summary>
+		static LinkedList<string> workingCode = new LinkedList<string>();
+
+		/// <summary>
 		/// This is where we write the output file
 		/// </summary>
 		static string outputCode = "";
@@ -43,15 +48,61 @@ namespace A101 {
 
 			//Begin parsing the file
 			ParseFile();
+
+			Console.Read();
 		}
 
 		/// <summary>
 		/// Parses the file loaded into the input code variable and writes to the output code variable
 		/// </summary>
 		public static void ParseFile() {
+
+			//Remove \r and leave only \n
+			inputCode = inputCode.Replace( "\r", "" );
+
+			//Split the code by line
+			string[] splitCode = inputCode.Split( '\n' );
+
+			//Add every line to the working code
+			for( int i = 0; i < splitCode.Length; i++ ) {
+				string line = splitCode[i];
+				line = line.Trim();
+
+				//If the line is skipable, skip it
+				if( ShouldSkipLine( line ) ) {
+					continue;
+				}
+
+				workingCode.AddLast( line );
+
+				Print( line );
+			}
+
+			//Begin processing the working code
 			
-			
-			
+		}
+
+		/// <summary>
+		/// Determines if a line should be skipped and ignored
+		/// Primarily this will be empty lines and comments
+		/// </summary>
+		/// <param name="line"></param>
+		/// <returns></returns>
+		public static bool ShouldSkipLine( string line ) {
+
+			//Check for empty lines
+			if( line.Length == 0 ) {
+				return true;
+			}
+
+			//Check for comments
+			if( line.StartsWith( "#" ) ) {
+				return true;
+			}
+
+			//Otherwise, don't skip it
+			return false;
+
 		}
 
 		/// <summary>
@@ -64,7 +115,7 @@ namespace A101 {
 		}
 		
 		/// <summary>
-		/// Throws an error
+		/// Puts an error into the console and halts compilation
 		/// </summary>
 		/// <param name="errorMessage"></param>
 		public static void Error( string errorMessage ) {

@@ -33,6 +33,8 @@ namespace A101 {
 
 		public static string FileDoesNotExist = "The passed file does not exist!";
 
+		public static string MalformedLabelFound = "A label was found to be malformed!";
+
 		/*
 		 * String buffer errors
 		 */

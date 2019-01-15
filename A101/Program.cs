@@ -7,9 +7,16 @@ using System.IO;
 
 namespace A101 {
 	class Program {
+	
+		/// <summary>
+		/// The code is read into this variable to be iterated through
+		/// </summary>
+		static string inputCode = "";
 
-		
-		string code = "";
+		/// <summary>
+		/// This is where we write the output file
+		/// </summary>
+		static string outputCode = "";
 
 		static void Main( string[] args ) {
 
@@ -30,18 +37,44 @@ namespace A101 {
 			}
 
 			//We now know that there is a real, existing .A1 file passed as the first argument
+			
+			//Load in the file they passed
+			LoadFile( args[0] );
 
+			//Begin parsing the file
+			ParseFile();
+		}
 
-			Console.Read();
+		/// <summary>
+		/// Parses the file loaded into the input code variable and writes to the output code variable
+		/// </summary>
+		public static void ParseFile() {
+			
+			
 			
 		}
 
-		//Throws an error
+		/// <summary>
+		/// Loads in a file's code into the input code varible
+		/// </summary>
+		/// <param name="filePath"></param>
+		public static void LoadFile( string filePath ){
+			StreamReader streamReader = new StreamReader( filePath, Encoding.UTF8 );
+			inputCode = streamReader.ReadToEnd();
+		}
+		
+		/// <summary>
+		/// Throws an error
+		/// </summary>
+		/// <param name="errorMessage"></param>
 		public static void Error( string errorMessage ) {
 			Print( errorMessage );
 		}
 
-		//Prints a line to the console
+		/// <summary>
+		/// Prints a line to the console
+		/// </summary>
+		/// <param name="message"></param>
 		public static void Print( string message ) {
 			Console.WriteLine( message );
 		}

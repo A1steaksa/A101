@@ -138,8 +138,8 @@ namespace A101 {
 				}
 
 				//Holds the bytes we will be writing to the file
-				//1 byte for opcode, 2 bytes for argument 1, 2 bytes for argument 2, 2 bytes for argument 3 = 7 total bytes
-				byte[] outputLine = new byte[7];
+				//1 byte for opcode, 1 byte for flags, 2 bytes for argument 1, 2 bytes for argument 2, 2 bytes for argument 3 = 8 total bytes
+				byte[] outputLine = new byte[8];
 
 				//Split this line into its pieces
 				string[] splitLine = line.Split( ' ' );
@@ -159,6 +159,10 @@ namespace A101 {
 				//Save that byte into our output line
 				outputLine[0] = opcodeByte;
 
+				//This is what stores argument type flags for the arguments
+				//A 0 indicates that the argument is a literal and a 1 indicates that it is a register number
+				byte flagByte = 0;
+
 				/*
 				 *	Arguments
 				 */
@@ -171,8 +175,11 @@ namespace A101 {
 				/*
 				 *	Argument #1
 				 */
+				
+				//Get the argument
+				string argument1 = splitLine[1];
 
-
+				
 
 				lineNumber++;
 			}
